@@ -1,2 +1,9 @@
-# blazorwasm
-blazor webassembly - asp.net hosted, pwa and etc.
+# Blazor WebAssembly
+
+- blazor webassembly - asp.net hosted, pwa and etc.
+> ASP.NET hosted
+> PWA
+
+```
+dotnet new blazorwasm --hosted -o blazorwasm
+```
