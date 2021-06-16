@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -39,7 +40,8 @@ namespace blazorwasm.Client.HttpRepository
     {
       var queryStringParam = new Dictionary<string, string> {
         ["pageNumber"] = productParameters.PageNumber.ToString(),
-        ["searchTerm"] = productParameters.SearchTerm == null ? "" : productParameters.SearchTerm
+        ["searchTerm"] = productParameters.SearchTerm == null ? "" : productParameters.SearchTerm,
+        ["orderBy"] = productParameters.OrderBy
       };
 
       var response = await _client.GetAsync(QueryHelpers.AddQueryString("api/products", queryStringParam));
@@ -55,6 +57,18 @@ namespace blazorwasm.Client.HttpRepository
       };
 
       return pagingResponse;
+    }
+
+    public async Task CreateProduct(Product product)
+    {
+      var content = JsonSerializer.Serialize(product);
+      var bodyContent = new StringContent(content, Encoding.UTF8, "application/json");
+      var postResult = await _client.PostAsync("api/products", bodyContent);
+      var postContent = await postResult.Content.ReadAsStringAsync();
+
+      if (!postResult.IsSuccessStatusCode) {
+        throw new ApplicationException(postContent);
+      }
     }
   }
 }

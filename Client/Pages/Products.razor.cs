@@ -45,6 +45,15 @@ namespace blazorwasm.Client.Pages
       Console.WriteLine(searchTerm);
       _productParameters.PageNumber = 1;
       _productParameters.SearchTerm = searchTerm;
+
+      await GetProducts();
+    }
+
+    private async Task SortChanged(string orderBy)
+    {
+      Console.WriteLine(orderBy);
+      _productParameters.OrderBy = orderBy;
+
       await GetProducts();
     }
   }

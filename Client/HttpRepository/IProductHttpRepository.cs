@@ -11,5 +11,7 @@ namespace blazorwasm.Client.HttpRepository
     Task<List<Product>> GetProducts();
 
     Task<PagingResponse<Product>> GetPagingProducts(ProductParameters productParameters);
+
+    Task CreateProduct(Product product);
   }
 }

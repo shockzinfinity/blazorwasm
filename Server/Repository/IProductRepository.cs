@@ -11,5 +11,7 @@ namespace blazorwasm.Server.Repository
     Task<IEnumerable<Product>> GetProducts();
 
     Task<PagedList<Product>> GetPagingProducts(ProductParameters productParameters);
+
+    Task CreateProduct(Product product);
   }
 }

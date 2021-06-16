@@ -34,5 +34,17 @@ namespace blazorwasm.Server.Controllers
 
       return Ok(products);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateProduct([FromBody] Product product)
+    {
+      if (product == null)
+        return BadRequest();
+
+      //model validation…
+      await _repository.CreateProduct(product);
+
+      return Created("", product);
+    }
   }
 }
