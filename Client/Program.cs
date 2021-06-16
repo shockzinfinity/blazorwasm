@@ -1,3 +1,4 @@
+using blazorwasm.Client.HttpRepository;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,6 +22,8 @@ namespace blazorwasm.Client
       builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("blazorwasm.ServerAPI"));
 
       builder.Services.AddApiAuthorization();
+
+      builder.Services.AddScoped<IProductHttpRepository, ProductHttpRepository>();
 
       await builder.Build().RunAsync();
     }

@@ -1,5 +1,6 @@
 using blazorwasm.Server.Data;
 using blazorwasm.Server.Models;
+using blazorwasm.Server.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -33,6 +34,8 @@ namespace blazorwasm.Server
       services.AddIdentityServer().AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
       services.AddAuthentication().AddIdentityServerJwt();
+
+      services.AddScoped<IProductRepository, ProductRepository>();
 
       services.AddControllersWithViews();
       services.AddRazorPages();
