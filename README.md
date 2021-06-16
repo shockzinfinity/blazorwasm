@@ -5,5 +5,5 @@
 > PWA
 
 ```
-dotnet new blazorwasm --hosted -o blazorwasm
+dotnet new blazorwasm --hosted --auth Individual --pwa -o blazorwasm
 ```
